@@ -6,5 +6,5 @@
 def add(a, b):
     return a + b
 
-result = add(8, 6)
+result = add(0, 0)
 print(result)  # Output: 8
