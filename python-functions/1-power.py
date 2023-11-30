@@ -3,6 +3,8 @@ def pow(a, b):
     if b == 0:
         return 1
     
+    if b < 0:
+        return 1 / pow(a, -b) 
     # Initialize result to the base value
     result = a
     
@@ -11,3 +13,5 @@ def pow(a, b):
         result *= a
     
     return result
+
+print (pow (10, -2))
