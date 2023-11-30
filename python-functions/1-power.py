@@ -14,4 +14,4 @@ def pow(a, b):
     
     return result
 
-print (pow (10, -2))
+#print (pow (10, -2))
