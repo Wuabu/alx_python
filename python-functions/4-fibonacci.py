@@ -4,7 +4,7 @@ def fibonacci_sequence(n):
         return []
 
     
-    sequence = [0, ]
+    sequence = [0, 1]
 
     
     while len(sequence) < n:
