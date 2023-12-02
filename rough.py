@@ -90,3 +90,15 @@
 # def my_function(counter=89):
 #    return counter + 1
 # print(my_function())
+
+
+def add(a, b):
+    return a + b
+
+if __name__ == "__main__":
+    # Your code here for direct execution
+    a = 5
+    b = 9
+    result = add(a, b)
+print(f"{a} + {b} = {result}")
+
