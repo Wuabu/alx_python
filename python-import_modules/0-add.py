@@ -11,6 +11,17 @@
 # print   ("{} + {} = {}".format(a, b, add))
 
 
+# def add(a, b):
+#     return a + b
+
+# if __name__ == "__main__":
+#     # Your code here for direct execution
+#     a = 5
+#     b = 9
+#     result = add(a, b)
+# print(f"{a} + {b} = {result}")
+
+
 def add(a, b):
     return a + b
 
@@ -18,7 +29,8 @@ if __name__ == "__main__":
     # Your code here for direct execution
     a = 5
     b = 9
-    # result = add(a, b)
-print(f"{a} + {b} = {result}")
+    add_0 = add  # Rename add to add_0
+    result = add_0(a, b)
+    print(f"{a} + {b} = {result}")
 
 
