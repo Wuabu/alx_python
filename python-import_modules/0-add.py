@@ -29,8 +29,8 @@ if __name__ == "__main__":
     # Your code here for direct execution
     a = 5
     b = 9
-    add_0 = add  # Rename add to add_0
-    result = add_0(a, b)
+    # add_0 = add  # Rename add to add_0
+    result = add_0 = add(a, b)
     print(f"{a} + {b} = {result}")
 
 
