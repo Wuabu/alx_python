@@ -1,3 +1,3 @@
 i = "Chicago"
-a = i. replace("C", "").replace("c", "")
-print (a)
+a = ''.join(c for c in i if c not in {'C', 'c'})
+print(a)
