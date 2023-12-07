@@ -92,13 +92,19 @@
 # print(my_function())
 
 
-def add(a, b):
-    return a + b
+# def add(a, b):
+#     return a + b
 
-if __name__ == "__main__":
-    # Your code here for direct execution
-    a = 5
-    b = 9
-    result = add(a, b)
-print(f"{a} + {b} = {result}")
+# if __name__ == "__main__":
+#     # Your code here for direct execution
+#     a = 5
+#     b = 9
+#     result = add(a, b)
+# print(f"{a} + {b} = {result}")
 
+# for a in range(5, 11):
+#     print ("a = ", a)
+
+for i in range (21):
+    if (i % 2) ! == 0:
+        print ("i = ", i)
