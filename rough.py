@@ -92,7 +92,7 @@
 # # print(my_function())
 
 
-<<<<<<< HEAD
+
 # def add(a, b):
 #     return a + b
 
@@ -106,11 +106,8 @@
 # for a in range(5, 11):
 #     print ("a = ", a)
 
-for i in range (21):
-    if (i % 2) ! == 0:
-        print ("i = ", i)
-=======
-# # def add(a, b):
+
+
 # #     return a + b
 
 # # if __name__ == "__main__":
@@ -255,30 +252,30 @@ for i in range (21):
 # b= set("dfghtdwxcdvy")
 # print (b-a)
 
-def square_matrix_simple(matrix=[]):
-    # Create a new matrix with the same size as the input matrix
-    result_matrix = [row[:] for row in matrix]
+# def square_matrix_simple(matrix=[]):
+#     # Create a new matrix with the same size as the input matrix
+#     result_matrix = [row[:] for row in matrix]
 
-    # Iterate over each element in the matrix and square the value
-    for i in range(len(matrix)):
-        for j in range(len(matrix[i])):
-            result_matrix[i][j] = matrix[i][j] ** 2
+#     # Iterate over each element in the matrix and square the value
+#     for i in range(len(matrix)):
+#         for j in range(len(matrix[i])):
+#             result_matrix[i][j] = matrix[i][j] ** 2
 
-    return result_matrix
+#     return result_matrix
 
-# Example usage:
-if __name__ == "__main__":
-    # Sample matrix
-    input_matrix = [
-        [1, 2, 3],
-        [4, 5, 6],
-        [7, 8, 9]
-    ]
+# # Example usage:
+# if __name__ == "__main__":
+#     # Sample matrix
+#     input_matrix = [
+#         [1, 2, 3],
+#         [4, 5, 6],
+#         [7, 8, 9]
+#     ]
 
-    # Compute the square matrix
-    result_matrix = square_matrix_simple(input_matrix)
+#     # Compute the square matrix
+#     result_matrix = square_matrix_simple(input_matrix)
 
-    # Print the result
-    for row in result_matrix:
-        print(row)
->>>>>>> 97eae865ea7595f9ab59390fbb4856c87b66fc3a
+#     # Print the result
+#     for row in result_matrix:
+#         print(row)
+
