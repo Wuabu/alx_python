@@ -92,8 +92,28 @@
 # # # print(my_function())
 
 
+<<<<<<< HEAD
 # # # def add(a, b):
 # # #     return a + b
+=======
+
+# def add(a, b):
+#     return a + b
+
+# if __name__ == "__main__":
+#     # Your code here for direct execution
+#     a = 5
+#     b = 9
+#     result = add(a, b)
+# print(f"{a} + {b} = {result}")
+
+# for a in range(5, 11):
+#     print ("a = ", a)
+
+
+
+# #     return a + b
+>>>>>>> 29fd82319a57e37e78c9cebcb5756ef6184d076c
 
 # # # if __name__ == "__main__":
 # # #     # Your code here for direct execution
@@ -259,6 +279,7 @@
 
 #     # Compute the square matrix
 #     result_matrix = square_matrix_simple(input_matrix)
+<<<<<<< HEAD
 
 #     # Print the result
 #     for row in result_matrix:
@@ -286,3 +307,10 @@ print (fruits)
 print (age)
 
 # print ("The number of """,fruits.count("Pineaples") )
+=======
+
+#     # Print the result
+#     for row in result_matrix:
+#         print(row)
+
+>>>>>>> 29fd82319a57e37e78c9cebcb5756ef6184d076c
