@@ -10,3 +10,8 @@
 #         print(response.text)
 #     else:
 #         print(f"Failed to retrieve content. Status code: {response.status_code}")
+import requests
+
+if __name__ == '__main__':
+    url = 'https://alu-intranet.hbtn.io/status'
+    response = requests.get(url)
