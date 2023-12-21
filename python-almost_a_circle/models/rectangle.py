@@ -1,9 +1,16 @@
+#!/usr/bin/python3
+"""Module containing the Rectangle class."""
+from models.base import Base
+
 class Rectangle(Base):
-    """Rectangle class that inherits from Base."""
+    """Rectangle class inherits from Base."""
 
     def __init__(self, width, height, x=0, y=0, id=None):
         """Initialize Rectangle instance with width, height, x, y, and id."""
+        # Call the constructor of the Base class with id
         super().__init__(id)
+
+        # Set private instance attributes with public getters and setters
         self.width = width
         self.height = height
         self.x = x
@@ -65,19 +72,19 @@ class Rectangle(Base):
             raise ValueError("y must be >= 0")
         self.__y = value
 
-    def area(self):
-        """Calculate and return the area of the rectangle."""
-        return self.width * self.height
+# # Usage example
+# if __name__ == "__main__":
+#     # Creating instances of the Rectangle class
+#     rect1 = Rectangle(10, 5)
+#     print(rect1.id)  # Output: 1
+#     print(rect1.width)  # Output: 10
+#     print(rect1.height)  # Output: 5
+#     print(rect1.x)  # Output: 0
+#     print(rect1.y)  # Output: 0
 
-    def display(self):
-        """Display the rectangle using '#' characters."""
-        for _ in range(self.y):
-            print()
-        for _ in range(self.height):
-            print(" " * self.x + "#" * self.width)
-
-    def __str__(self):
-        """Return a string representation of the rectangle."""
-        return "[Rectangle] ({}) {}/{} - {}/{}".format(
-            self.id, self.x, self.y, self.width, self.height
-        )
+#     rect2 = Rectangle(2, 3, 4, 1, 7)
+#     print(rect2.id)  # Output: 7
+#     print(rect2.width)  # Output: 2
+#     print(rect2.height)  # Output: 3
+#     print(rect2.x)  # Output: 4
+#     print(rect2.y)  # Output: 1
