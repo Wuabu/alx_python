@@ -74,17 +74,13 @@ class Rectangle(Base):
 
 # # Usage example
 # if __name__ == "__main__":
-#     # Creating instances of the Rectangle class
-#     rect1 = Rectangle(10, 5)
-#     print(rect1.id)  # Output: 1
-#     print(rect1.width)  # Output: 10
-#     print(rect1.height)  # Output: 5
-#     print(rect1.x)  # Output: 0
-#     print(rect1.y)  # Output: 0
+#     # Creating instances of the Rectangle class with validation
+#     try:
+#         rect1 = Rectangle("10", 5)
+#     except Exception as e:
+#         print(f"Error: {e}")
 
-#     rect2 = Rectangle(2, 3, 4, 1, 7)
-#     print(rect2.id)  # Output: 7
-#     print(rect2.width)  # Output: 2
-#     print(rect2.height)  # Output: 3
-#     print(rect2.x)  # Output: 4
-#     print(rect2.y)  # Output: 1
+#     try:
+#         rect2 = Rectangle(0, 3, -2, 1)
+#     except Exception as e:
+#         print(f"Error: {e}")
