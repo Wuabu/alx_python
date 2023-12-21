@@ -75,19 +75,10 @@ class Rectangle(Base):
     def area(self):
         """Return the area value of the Rectangle."""
         return self.width * self.height
-# # Usage example
-# if __name__ == "__main__":
-#     # Creating instances of the Rectangle class
-#     rect1 = Rectangle(10, 5)
-#     print(rect1.id)  # Output: 1
-#     print(rect1.width)  # Output: 10
-#     print(rect1.height)  # Output: 5
-#     print(rect1.x)  # Output: 0
-#     print(rect1.y)  # Output: 0
+    
+    def display(self):
+            """Print the Rectangle instance with the character #."""
+            for i in range(self.height):
+                print("#" * self.width)
+    
 
-#     rect2 = Rectangle(2, 3, 4, 1, 7)
-#     print(rect2.id)  # Output: 7
-#     print(rect2.width)  # Output: 2
-#     print(rect2.height)  # Output: 3
-#     print(rect2.x)  # Output: 4
-#     print(rect2.y)  # Output: 1
