@@ -1,16 +1,9 @@
-#!/usr/bin/python3
-"""Module containing the Rectangle class."""
-from models.base import Base
-
 class Rectangle(Base):
-    """Rectangle class inherits from Base."""
+    """Rectangle class that inherits from Base."""
 
     def __init__(self, width, height, x=0, y=0, id=None):
         """Initialize Rectangle instance with width, height, x, y, and id."""
-        # Call the constructor of the Base class with id
         super().__init__(id)
-
-        # Set private instance attributes with public getters and setters
         self.width = width
         self.height = height
         self.x = x
@@ -72,15 +65,19 @@ class Rectangle(Base):
             raise ValueError("y must be >= 0")
         self.__y = value
 
-# # Usage example
-# if __name__ == "__main__":
-#     # Creating instances of the Rectangle class with validation
-#     try:
-#         rect1 = Rectangle("10", 5)
-#     except Exception as e:
-#         print(f"Error: {e}")
+    def area(self):
+        """Calculate and return the area of the rectangle."""
+        return self.width * self.height
 
-#     try:
-#         rect2 = Rectangle(0, 3, -2, 1)
-#     except Exception as e:
-#         print(f"Error: {e}")
+    def display(self):
+        """Display the rectangle using '#' characters."""
+        for _ in range(self.y):
+            print()
+        for _ in range(self.height):
+            print(" " * self.x + "#" * self.width)
+
+    def __str__(self):
+        """Return a string representation of the rectangle."""
+        return "[Rectangle] ({}) {}/{} - {}/{}".format(
+            self.id, self.x, self.y, self.width, self.height
+        )
