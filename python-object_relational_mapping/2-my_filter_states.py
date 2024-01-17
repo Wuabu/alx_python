@@ -9,11 +9,11 @@ def my_filter_states(username, password, db_name, search_name):
     # Create a cursor object to interact with the database
     cursor = db.cursor()
 
-    # Use format to create the SQL query with the user input
-    query = "SELECT * FROM states WHERE name LIKE '{}' ORDER BY id ASC".format(search_name)
+    # Use parameterized query to prevent SQL injection
+    query = "SELECT * FROM states WHERE UPPER(name) LIKE UPPER(%s) ORDER BY id ASC"
 
-    # Execute the SQL query to filter states by user input
-    cursor.execute(query)
+    # Execute the SQL query with the user input as a parameter
+    cursor.execute(query, ('%' + search_name + '%',))
 
     # Fetch all rows from the result set
     states = cursor.fetchall()
