@@ -39,4 +39,7 @@ if __name__ == "__main__":
         sys.exit(1)
 
     # Retrieve command-line arguments
-    username, password, db_name, state_name = sys.argv[
+    username, password, db_name, state_name = sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4]
+
+    # Call the function to list all cities of the specified state
+    cities_by_state(username, password, db_name, state_name)
