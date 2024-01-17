@@ -24,9 +24,13 @@ def cities_by_state(username, password, db_name, state_name):
     # Fetch all rows from the result set
     cities = cursor.fetchall()
 
-    # Display the results
-    for city in cities:
-        print(city)
+    # Check different cases and display appropriate messages
+    if not cities:
+        print("No cities found for state '{}'.".format(state_name))
+    else:
+        print("Cities in state '{}':".format(state_name))
+        for city in cities:
+            print(city)
 
     # Close the cursor and connection
     cursor.close()
