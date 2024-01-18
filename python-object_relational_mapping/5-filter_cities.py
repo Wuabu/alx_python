@@ -2,7 +2,7 @@
 import MySQLdb
 import sys
 
-def cities_by_state(username, password, db_name, state_name):
+def filter_cities_by_state(username, password, db_name, state_name):
     # Connect to MySQL server
     db = MySQLdb.connect(host="localhost", port=3306, user=username, passwd=password, db=db_name)
 
@@ -11,26 +11,23 @@ def cities_by_state(username, password, db_name, state_name):
 
     # Use parameterized query to prevent SQL injection
     query = """
-        SELECT cities.id, cities.name, states.name
+        SELECT GROUP_CONCAT(cities.name ORDER BY cities.id ASC SEPARATOR ', ')
         FROM cities
         JOIN states ON cities.state_id = states.id
         WHERE states.name = %s
-        ORDER BY cities.id ASC
     """
 
     # Execute the SQL query with the user input as a parameter
     cursor.execute(query, (state_name,))
 
-    # Fetch all rows from the result set
-    cities = cursor.fetchall()
+    # Fetch the result
+    result = cursor.fetchone()[0]
 
-    # Check different cases and display appropriate messages
-    if not cities:
-        print("No cities found for state '{}'.".format(state_name))
+    # Display the results
+    if result:
+        print(result)
     else:
-        print("Cities in state '{}':".format(state_name))
-        for city in cities:
-            print(city)
+        print("No cities found for state '{}'.".format(state_name))
 
     # Close the cursor and connection
     cursor.close()
@@ -46,4 +43,4 @@ if __name__ == "__main__":
     username, password, db_name, state_name = sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4]
 
     # Call the function to list all cities of the specified state
-    cities_by_state(username, password, db_name, state_name)
+    filter_cities_by_state(username, password, db_name, state_name)
