@@ -1,11 +1,19 @@
-#!/usr/bin/python3
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-from model_state import Base, State
+"""State Class Documentation
 
-def list_states_with_a(username, password, db_name):
-    # Create engine
-    engine = create_engine(f'mysql://{username}:{password}@localhost:3306/{db_name}')
+The `State` class represents a state entity and corresponds to the 'states' table in a MySQL database.
+
+Attributes:
+    id (int): An auto-generated, unique integer representing the primary key of the state. It cannot be null.
+    name (str): A string representing the name of the state with a maximum length of 128 characters. It cannot be null.
+
+Example Usage:
+    # Import necessary modules and classes
+    from sqlalchemy import create_engine
+    from sqlalchemy.orm import sessionmaker
+    from your_module_name import Base, State  # Replace 'your_module_name' with the actual module name
+
+    # Connect to the MySQL server
+    engine = create_engine('mysql://your_username:your_password@localhost:3306/your_database_name')
 
     # Bind the engine to the Base class
     Base.metadata.create_all(engine)
@@ -14,25 +22,37 @@ def list_states_with_a(username, password, db_name):
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    # Query and display State objects containing the letter 'a'
-    states_with_a = session.query(State).filter(State.name.like('%a%')).order_by(State.id).all()
+    # Create a new State object
+    new_state = State(name='New State')
 
-    for state in states_with_a:
-        print("{}: {}".format(state.id, state.name))
+    # Add the state to the session and commit changes to the database
+    session.add(new_state)
+    session.commit()
+
+    # Query and print all states from the 'states' table
+    states = session.query(State).all()
+    for state in states:
+        print(f"State ID: {state.id}, Name: {state.name}")
 
     # Close the session
     session.close()
+"""
 
-if __name__ == "__main__":
-    import sys
+from sqlalchemy import Column, Integer, String, create_engine
+from sqlalchemy.ext.declarative import declarative_base
 
-    # Check if the correct number of arguments is provided
-    if len(sys.argv) != 4:
-        print("Usage: {} <username> <password> <database>".format(sys.argv[0]))
-        sys.exit(1)
+Base = declarative_base()
 
-    # Retrieve command-line arguments
-    username, password, db_name = sys.argv[1], sys.argv[2], sys.argv[3]
+class State(Base):
+    """State Class
 
-    # Call the function to list State objects containing the letter 'a'
-    list_states_with_a(username, password, db_name)
+    Represents a state entity in the 'states' table of a MySQL database.
+
+    Attributes:
+        id (int): An auto-generated, unique integer representing the primary key of the state. It cannot be null.
+        name (str): A string representing the name of the state with a maximum length of 128 characters. It cannot be null.
+    """
+    __tablename__ = 'states'
+
+    id = Column(Integer, primary_key=True, nullable=False, autoincrement=True)
+    name = Column(String(128), nullable=False)
