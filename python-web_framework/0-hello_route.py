@@ -30,7 +30,7 @@ def hello_hbnb():
     Returns:
     str: HTML-formatted greeting message.
     """
-    return "<h1>Hello HBNB</h1>"
+    return "Hello HBNB"
 
 if __name__ == '__main__':
     # Run the Flask application on 0.0.0.0:5000
