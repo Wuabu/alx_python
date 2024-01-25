@@ -1,16 +1,15 @@
 """
-Simple Flask Web Application
+Extended Flask Web Application
 
-This module defines a simple Flask web application with multiple routes.
+This module defines an extended Flask web application with multiple routes.
 
 Usage:
 - Run the script to start the web application.
-- Access the home route at http://0.0.0.0:5000/ in a web browser or using curl.
-
-Routes:
-- `/`: Displays a greeting message "Hello HBNB!" in an h1 HTML tag.
-- `/hbnb`: Displays "HBNB".
-- `/c/<text>`: Displays "C " followed by the value of the text variable (replace underscore _ symbols with a space).
+- Access the following routes:
+  - http://0.0.0.0:5000/ : Displays "Hello HBNB!"
+  - http://0.0.0.0:5000/hbnb : Displays "HBNB"
+  - http://0.0.0.0:5000/c/<text> : Displays "C " followed by the value of the text variable.
+  - http://0.0.0.0:5000/python/<text> : Displays "Python " followed by the value of the text variable (default is "is cool").
 
 Note:
 - The application runs on 0.0.0.0, port 5000.
@@ -27,10 +26,10 @@ def hello_hbnb():
     """
     Home Route
 
-    Displays a greeting message "Hello HBNB!" in an h1 HTML tag.
+    Displays a greeting message "Hello HBNB!".
 
     Returns:
-    str: HTML-formatted greeting message.
+    str: Greeting message.
     """
     return "Hello HBNB!"
 
@@ -63,10 +62,10 @@ def c_text(text):
     formatted_text = text.replace('_', ' ')
     return f"C {formatted_text}"
 
-@app.reoute("/python/<text>", strict_slashes=False)
+@app.route("/python/<text>", strict_slashes=False)
 def python_text(text="is cool"):
-    
-    """Python Route
+    """
+    Python Route
 
     Displays "Python " followed by the value of the text variable.
     Replace underscore _ symbols with a space.
@@ -78,7 +77,7 @@ def python_text(text="is cool"):
     Returns:
     str: Formatted text.
     """
-    formatted_text = text.replace('_',' ')
+    formatted_text = text.replace('_', ' ')
     return f"Python {formatted_text}"
 
 if __name__ == '__main__':
