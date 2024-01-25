@@ -43,8 +43,8 @@ def hbnb():
 
 @app.route("/c/<text>", strict_slashes=False)
 def c_text():
-    sentence =text.replace ('_', ' ')
-    return "C {sentence}"
+    formatted_text = text.replace('_', ' ')
+    return f"C {formatted_text}"
 
 if __name__ == '__main__':
     # Run the Flask application on 0.0.0.0:5000
