@@ -64,7 +64,20 @@ def c_text(text):
     return f"C {formatted_text}"
 
 @app.reoute("/python/<text>", strict_slashes=False)
-def python_text():
+def python_text(text="is cool"):
+    
+    """Python Route
+
+    Displays "Python " followed by the value of the text variable.
+    Replace underscore _ symbols with a space.
+    If no text is provided, the default is "is cool".
+
+    Args:
+    text (str): The text variable.
+
+    Returns:
+    str: Formatted text.
+    """
     formatted_text = text.replace('_',' ')
     return f"Python {formatted_text}"
 
