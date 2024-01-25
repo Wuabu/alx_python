@@ -1,7 +1,7 @@
 """
 Simple Flask Web Application
 
-This module defines a simple Flask web application with one route.
+This module defines a simple Flask web application with multiple routes.
 
 Usage:
 - Run the script to start the web application.
@@ -9,10 +9,12 @@ Usage:
 
 Routes:
 - `/`: Displays a greeting message "Hello HBNB!" in an h1 HTML tag.
+- `/hbnb`: Displays "HBNB".
+- `/c/<text>`: Displays "C " followed by the value of the text variable (replace underscore _ symbols with a space).
 
 Note:
 - The application runs on 0.0.0.0, port 5000.
-- The route definition uses `strict_slashes=False` to allow access with or without a trailing slash.
+- The route definitions use `strict_slashes=False` to allow access with or without a trailing slash.
 """
 
 from flask import Flask
@@ -34,15 +36,30 @@ def hello_hbnb():
 
 @app.route("/hbnb", strict_slashes=False)
 def hbnb():
-    """Displays the text HBHN in an h1 HTML tag.
+    """
+    HBNB Route
+
+    Displays "HBNB".
 
     Returns:
-        str: HTML formatted message
+    str: "HBNB".
     """
     return "HBNB"
 
 @app.route("/c/<text>", strict_slashes=False)
-def c_text():
+def c_text(text):
+    """
+    C Route
+
+    Displays "C " followed by the value of the text variable.
+    Replace underscore _ symbols with a space.
+
+    Args:
+    text (str): The text variable.
+
+    Returns:
+    str: Formatted text.
+    """
     formatted_text = text.replace('_', ' ')
     return f"C {formatted_text}"
 
