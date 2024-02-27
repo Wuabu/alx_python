@@ -74,8 +74,8 @@ class Square(Rectangle):
         Args:
         size: must be private and a positive integer
         """
-        
-        self.integer_validator("size", size)
+        base = BaseGeometry()
+        base.integer_validator("size", size)
         self.__size = size
         
         
@@ -85,3 +85,4 @@ class Square(Rectangle):
         return self.__size * self.__size   
 
 print(issubclass(Square, Rectangle))
+print(dir(Square))
