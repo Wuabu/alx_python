@@ -1,65 +1,67 @@
-# Import necessary modules
-import requests
+"""
+Writes employee todo list details to a JSON file.
+
+Args:
+    employee_id (int): The ID of the employee.
+    employee_name (str): The name of the employee.
+    todos_details (list): List containing todo details.
+
+Returns:
+    None
+"""
 import json
+import requests
 import sys
 
-def get_employee_data(employee_id):
-    """
-    Fetches employee details and their TODO list from the JSONPlaceholder API.
+def todo_list_progress(employee_id):
+    '''
+    Retrieves the todo list progress of an employee and writes it to a JSON file.
 
-    Parameters:
-        employee_id (int): The ID of the employee for whom data is to be fetched.
+    Args:
+        employee_id (int): The ID of the employee.
 
     Returns:
-        tuple: A tuple containing the employee details and their TODO list.
+        None
+    '''
+    # Fetching employee general details and converting JSON
+    employee_details = requests.get(f"https://jsonplaceholder.typicode.com/users/{employee_id}")
+    employee_data = employee_details.json()
+
+    # Fetching employee todo list details and converting to JSON
+    employee_todos = requests.get(f"https://jsonplaceholder.typicode.com/users/{employee_id}/todos")
+    todos_details = employee_todos.json()
+
+    # Fetching employee name from general details
+    employee_name = employee_data["name"]
+
+    # Fetching employee total todo list length and completed tasks
+    total_tasks = len(todos_details)
+    completed_tasks = sum(1 for todo in todos_details if todo["completed"])
+
+    # Printing employee todo list progress
+    print("Employee {} is done with tasks({}/{}):".format(employee_name, completed_tasks, total_tasks))
+
+    for todo in todos_details:
+        if todo["completed"]:
+            print(f"\t {todo['title']}")
+
+def write_to_json(employee_id, employee_name, todos_details):
     """
-    # Fetch employee details
-    employee_url = f'https://jsonplaceholder.typicode.com/users/{employee_id}'
-    response_employee = requests.get(employee_url)
-    employee_data = response_employee.json()
+    Writes employee todo list details to a JSON file.
 
-    # Fetch TODO list for the employee
-    todos_url = f'https://jsonplaceholder.typicode.com/users/{employee_id}/todos'
-    response_todos = requests.get(todos_url)
-    todos_data = response_todos.json()
+    Args:
+        employee_id (int): The ID of the employee.
+        employee_name (str): The name of the employee.
+        todos_details (list): List containing todo details.
 
-    return employee_data, todos_data
-
-def export_to_json(employee_data, todos_data):
+    Returns:
+        None
     """
-    Exports employee's TODO list data to a JSON file.
-
-    Parameters:
-        employee_data (dict): Details of the employee.
-        todos_data (list): List of TODO items for the employee.
-    """
-    user_id = employee_data['id']
-    username = employee_data['username']
-    
-    json_filename = f'{user_id}.json'
-
-    tasks_list = [{"task": task['title'], "completed": task['completed'], "username": username} for task in todos_data]
-    data_to_export = {str(user_id): tasks_list}
-
-    with open(json_filename, 'w') as json_file:
-        json.dump(data_to_export, json_file, indent=2)
-
-    print(f'Data exported to {json_filename}')
+    response = {str(employee_id): [{"task": todo["title"], "completed": todo["completed"], "username": employee_name} for todo in todos_details]}
+    with open(f"{employee_id}.json", "w") as json_file:
+        json.dump(response, json_file, indent=4)
 
 if __name__ == "__main__":
-    # Check if the correct number of command-line arguments is provided
-    if len(sys.argv) != 2:
-        print("Usage: python script.py <employee_id>")
-        sys.exit(1)
-
-    # Extract employee ID from command-line arguments
     employee_id = int(sys.argv[1])
-
-    try:
-        # Fetch employee data and TODO list
-        employee_data, todos_data = get_employee_data(employee_id)
-        
-        # Export data to JSON file
-        export_to_json(employee_data, todos_data)
-    except requests.RequestException as e:
-        print(f"Error fetching data: {e}")
+    todo_list_progress(employee_id)
+    write_to_json(employee_id, employee_data["name"], todos_details)
