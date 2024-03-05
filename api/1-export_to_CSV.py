@@ -1,7 +1,6 @@
 import csv
 import requests
 import sys
-import os
 
 def get_employee_data(employee_id):
     # Fetch employee details
@@ -22,7 +21,7 @@ def export_to_csv(employee_data, todos_data):
     
     csv_filename = f'{user_id}.csv'
     
-    with open(csv_filename, "w", newline="") as csvfile:
+    with open("USER_ID.csv", "w", newline="") as csvfile:
         fieldnames = ["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"]
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         
@@ -37,9 +36,15 @@ def export_to_csv(employee_data, todos_data):
 
     print(f'Data exported to {csv_filename}')
 
-def user_info(employee_id):
-    csv_filename = f'{employee_id}.csv'
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Usage: python script.py <employee_id>")
+        sys.exit(1)
 
-    # Check if the file exists
-    if os.path.exists(csv_filename):
-        with open(csv_filename, 'r') as 
+    employee_id = int(sys.argv[1])
+
+    try:
+        employee_data, todos_data = get_employee_data(employee_id)
+        export_to_csv(employee_data, todos_data)
+    except requests.RequestException as e:
+        print(f"Error fetching data: {e}")
