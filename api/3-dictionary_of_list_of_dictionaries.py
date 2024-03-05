@@ -1,22 +1,8 @@
-"""
-Records all employee tasks as a dictionary to a JSON file.
-
-Args:
-    employee_id (int): The ID of the employee.
-    employee_name (str): The name of the employee.
-    todos_details (list): List containing todo details.
-
-Returns:
-    None
-"""
 import json
 import requests
 import sys
 
-def todo_list_progress():
-    global employee_data
-    global todos_details
-
+def todo_list_progress(employee_data, todos_details):
     employee_name = employee_data["name"]
     
     total_tasks = len(todos_details)
@@ -37,6 +23,10 @@ def write_to_json(employee_id, employee_name, todos_details):
         json.dump(all_employees_tasks, json_file, indent=4)
 
 if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Usage: python script.py <employee_id>")
+        sys.exit(1)
+
     employee_id = int(sys.argv[1]) 
 
     employee_details = requests.get(f"https://jsonplaceholder.typicode.com/users/{employee_id}")
@@ -45,5 +35,5 @@ if __name__ == "__main__":
     employee_todos = requests.get(f"https://jsonplaceholder.typicode.com/users/{employee_id}/todos")
     todos_details = employee_todos.json()
 
-    todo_list_progress()
+    todo_list_progress(employee_data, todos_details)
     write_to_json(employee_id, employee_data["name"], todos_details)
