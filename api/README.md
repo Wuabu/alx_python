@@ -35,3 +35,10 @@ Employee EMPLOYEE_NAME is done with tasks(NUMBER_OF_DONE_TASKS/TOTAL_NUMBER_OF_T
 Note
 Replace EMPLOYEE_NAME, NUMBER_OF_DONE_TASKS, TOTAL_NUMBER_OF_TASKS, and TASK_TITLE with actual values fetched from the API.
 Feel free to modify and extend the script based on your requirements.
+
+RESOURCES
+https://intranet.alxswe.com/rltoken/CRB8vFQ4CMWEDGoXxe9xIA
+https://intranet.alxswe.com/rltoken/nmdvTgdZH9JCSNJo19sA0Q
+https://intranet.alxswe.com/rltoken/2bfOp8WycFmfCeion6vx4A
+https://intranet.alxswe.com/rltoken/rZbEFi14t48LMjdYzWyqEQ
+https://intranet.alxswe.com/rltoken/maJqoGCnAPzDho1WsQSEfw
