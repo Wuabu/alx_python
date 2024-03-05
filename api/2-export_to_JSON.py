@@ -1,14 +1,3 @@
-"""
-Writes employee todo list details to a JSON file.
-
-Args:
-    employee_id (int): The ID of the employee.
-    employee_name (str): The name of the employee.
-    todos_details (list): List containing todo details.
-
-Returns:
-    None
-"""
 import json
 import requests
 import sys
@@ -45,6 +34,9 @@ def todo_list_progress(employee_id):
         if todo["completed"]:
             print(f"\t {todo['title']}")
 
+    # Write to JSON file
+    write_to_json(employee_id, employee_name, todos_details)
+
 def write_to_json(employee_id, employee_name, todos_details):
     """
     Writes employee todo list details to a JSON file.
@@ -62,6 +54,14 @@ def write_to_json(employee_id, employee_name, todos_details):
         json.dump(response, json_file, indent=4)
 
 if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Usage: python script.py <employee_id>")
+        sys.exit(1)
+
     employee_id = int(sys.argv[1])
-    todo_list_progress(employee_id)
-    write_to_json(employee_id, employee_data["name"], todos_details)
+
+    try:
+        # Fetch employee data and todos within the __main__ block
+        todo_list_progress(employee_id)
+    except requests.RequestException as e:
+        print(f"Error fetching data: {e}")
